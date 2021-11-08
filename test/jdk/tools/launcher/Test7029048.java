@@ -185,7 +185,7 @@ public class Test7029048 extends TestHelper {
                         recursiveDelete(dstLibDir);
                     }
                     desc = "LD_LIBRARY_PATH should not be set (no directory)";
-		    if (TestHelper.isAIX) {
+                    if (TestHelper.isAIX) {
                         System.out.println("Skipping test case \"" + desc +
                                            "\" because the Aix launcher adds the paths in any case.");
                         continue;
