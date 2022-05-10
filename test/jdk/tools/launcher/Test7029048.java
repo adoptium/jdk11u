@@ -23,7 +23,7 @@
 
 /**
  * @test
- * @bug 7029048 8217340 8217216
+ * @bug 7029048 8217340
  * @summary Ensure that the launcher defends against user settings of the
  *          LD_LIBRARY_PATH environment variable on Unixes
  * @requires os.family != "windows" & os.family != "mac" & !vm.musl & os.family != "aix"
@@ -34,7 +34,7 @@
 
 /**
  * @test
- * @bug 7029048 8217340 8217216
+ * @bug 7029048 8217340
  * @summary Ensure that the launcher defends against user settings of the
  *          LD_LIBRARY_PATH environment variable on Unixes
  * @requires os.family == "aix" | vm.musl
@@ -170,9 +170,8 @@ public class Test7029048 extends TestHelper {
                     }
 
                     desc = "LD_LIBRARY_PATH should not be set (no libjvm.so)";
-                    if (TestHelper.isAIX) {
-                        System.out.println("Skipping test case \"" + desc +
-                                           "\" because the Aix launcher adds the paths in any case.");
+                    if (IS_EXPANDED_LD_LIBRARY_PATH) {
+                        printSkipMessage(desc);
                         continue;
                     }
                     if (IS_EXPANDED_LD_LIBRARY_PATH) {
@@ -185,9 +184,8 @@ public class Test7029048 extends TestHelper {
                         recursiveDelete(dstLibDir);
                     }
                     desc = "LD_LIBRARY_PATH should not be set (no directory)";
-                    if (TestHelper.isAIX) {
-                        System.out.println("Skipping test case \"" + desc +
-                                           "\" because the Aix launcher adds the paths in any case.");
+                    if (IS_EXPANDED_LD_LIBRARY_PATH) {
+                        printSkipMessage(desc);
                         continue;
                     }
                     if (IS_EXPANDED_LD_LIBRARY_PATH) {
@@ -219,7 +217,7 @@ public class Test7029048 extends TestHelper {
 
     private static void printSkipMessage(String description) {
         System.out.printf("Skipping test case '%s' because the Aix and musl launchers" +
-                " add the paths in any case.%n", description);
+                          " add the paths in any case.%n", description);
     }
 
     public static void main(String... args) throws Exception {
