@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, 2020, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011, 2019, Oracle and/or its affiliates. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is free software; you can redistribute it and/or modify it
@@ -21,7 +21,7 @@
  * questions.
  */
 
-/**
+/*
  * @test
  * @bug 7029048 8217340
  * @summary Ensure that the launcher defends against user settings of the
@@ -110,10 +110,10 @@ public class Test7029048 extends TestHelper {
 
     static int getLLPComponents(TestResult tr) {
         String envValue = getValue(LD_LIBRARY_PATH, tr.testOutput);
-        /*
-         * the envValue can never be null, since the test code should always
-         * print a "null" string.
-         */
+       /*
+        * the envValue can never be null, since the test code should always
+        * print a "null" string.
+        */
         if (envValue == null) {
             throw new RuntimeException("NPE, likely a program crash ??");
         }
@@ -174,20 +174,12 @@ public class Test7029048 extends TestHelper {
                         printSkipMessage(desc);
                         continue;
                     }
-                    if (IS_EXPANDED_LD_LIBRARY_PATH) {
-                        printSkipMessage(desc);
-                        continue;
-                    }
                     break;
                 case NO_DIR:
                     if (dstLibDir.exists()) {
                         recursiveDelete(dstLibDir);
                     }
                     desc = "LD_LIBRARY_PATH should not be set (no directory)";
-                    if (IS_EXPANDED_LD_LIBRARY_PATH) {
-                        printSkipMessage(desc);
-                        continue;
-                    }
                     if (IS_EXPANDED_LD_LIBRARY_PATH) {
                         printSkipMessage(desc);
                         continue;
